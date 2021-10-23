@@ -67,6 +67,8 @@ Optional:
 ## Wireframes
 ![](https://i.imgur.com/egpDpyY.png)
 
+## Interacive Wireframe
+<img src='https://i.imgur.com/6INVQaP.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 ### [BONUS] Digital Wireframes & Mockups
 ![](https://i.imgur.com/egpDpyY.png)
