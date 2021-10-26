@@ -67,9 +67,49 @@ Optional:
 ## Wireframes
 ![](https://i.imgur.com/egpDpyY.png)
 
-## Interacive Wireframe
+## [BONUS] Interacive Prototype
 <img src='https://i.imgur.com/6INVQaP.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 ### [BONUS] Digital Wireframes & Mockups
 ![](https://i.imgur.com/egpDpyY.png)
 
+## Schema 
+### Models
+#### Post
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | author        | Pointer to User | post author |
+   | rating        | Number   | rating that the user gives |
+   | review        | String   | review by author |
+   | reviewCount   | Number   | number of reviews that has been posted to a course |
+   | ratingsCount  | Number   | number of ratings for the course |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+### Networking
+#### List of network requests by screen
+   - Home Feed Screen
+      - (Read/GET) Query all posts where user is author
+         ```swift
+         let query = PFQuery(className:"Post")
+         query.whereKey("author", equalTo: currentUser)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let posts = posts {
+               print("Successfully retrieved \(posts.count) posts.")
+           // TODO: Do something with posts...
+            }
+         }
+         ```
+      - (Create/POST) Create a new rating on a post
+      - (Delete) Delete existing rating
+      - (Create/POST) Create a new review on a post
+      - (Delete) Delete existing review
+   - Create Post Screen
+      - (Create/POST) Create a new Post object
+   - Profile Screen
+      - (Read/GET) Query logged in user object
+      - (Update/PUT) Update user profile info
